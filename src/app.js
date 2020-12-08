@@ -31,7 +31,7 @@ app.get('/mario/:id',(req,res)=>{
       mariochars.map((mariochars) => res.send(mariochars))
     )
     .catch((error) => res.status(400).send({ message: error.message }));
-  
+    return;
 });
 
 app.post('/mario',(req,res)=>{
@@ -42,7 +42,6 @@ app.post('/mario',(req,res)=>{
 
     if(!mario.name || !mario.weight){
         
-        //res.setHeader('{"content-type":"application/x-www-form-urlencoded"}');
         res.status(400).send({message: 'either name or weight is missing'});
         return;
     }
@@ -67,6 +66,7 @@ app.patch('/mario/:id',(req,res)=>{
         }
         res.send(result);
     })
+    return;
 })
 
 app.delete('/mario/:id',(req,res)=>{
@@ -82,6 +82,7 @@ app.delete('/mario/:id',(req,res)=>{
         }
         res.status(200).send({message: 'character deleted'});
     });
+    return;
 })
 
 
