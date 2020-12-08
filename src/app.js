@@ -12,7 +12,7 @@ app.use(bodyParser.urlencoded({ extended: false }))
 app.use(bodyParser.json())
 
 // your code goes here
-app.get('http://localhost:3000/mario',(req,res)=>{
+app.get('/mario',(req,res)=>{
     marioModel.find().then(ele => {
         res.send(ele)
         return
@@ -20,7 +20,7 @@ app.get('http://localhost:3000/mario',(req,res)=>{
     
 })
 
-app.get('http://localhost:3000/mario/:id',(req,res)=>{
+app.get('/mario/:id',(req,res)=>{
     const marioId = parseInt(req.params.id);
     marioModel.find({ _id: marioId })
     .then((mariochars) =>
