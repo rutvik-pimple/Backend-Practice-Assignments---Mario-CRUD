@@ -48,10 +48,10 @@ app.post('/mario',(req,res)=>{
 
 app.patch('/mario/:id',(req,res)=>{
     const marioId = req.params.id;
-    const mario= new marioModel({
+    const mario= {
         ...req.body,
         weight: parseInt(req.body.weight)
-    })
+    }
     marioModel.findByIdAndUpdate(marioId, mario, {new: true}).then(result => {
         if(!result) {
             res.status(400).send({message: error.message});
@@ -63,8 +63,6 @@ app.patch('/mario/:id',(req,res)=>{
 
 app.delete('/mario/:id',(req,res)=>{
     const marioId = req.params.id;
-
-
     marioModel.findByIdAndDelete(marioId, function(result) {
         if(!result) {
             res.status(400).send({message: error.message});
