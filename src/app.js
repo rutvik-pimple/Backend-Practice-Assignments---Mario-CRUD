@@ -45,7 +45,7 @@ app.post('/mario',(req,res)=>{
         res.status(400).send({message: 'either name or weight is missing'});
         return;
     }
-    marioModel.save().then((mario)=>res.send(201,mario))
+    mario.save().then((mario)=>res.status(201).send(mario))
     
 })
 
