@@ -46,6 +46,34 @@ app.post('/mario',(req,res)=>{
     
 })
 
+app.patch('/mario/:id',(req,res)=>{
+    const marioId = req.params.id;
+    const mario= new marioModel({
+        ...req.body,
+        weight: parseInt(req.body.weight)
+    })
+    marioModel.findByIdAndUpdate(marioId, mario, {new: true}).then(result => {
+        if(!result) {
+            res.status(400).send({message: error.message});
+            return;
+        }
+        res.send(result);
+    })
+})
+
+app.delete('/mario/:id',(req,res)=>{
+    const marioId = req.params.id;
+
+
+    marioModel.findByIdAndDelete(marioId, function(result) {
+        if(!result) {
+            res.status(400).send({message: error.message});
+            return;
+        }
+        res.status(200).send({message: 'character deleted'});
+    });
+})
+
 
 
 module.exports = app;
