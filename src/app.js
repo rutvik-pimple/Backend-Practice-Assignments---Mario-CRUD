@@ -13,20 +13,22 @@ app.use(bodyParser.json())
 
 // your code goes here
 app.get('http://localhost:3000/mario',(req,res)=>{
-    const charArray = marioModel.find()
-    res.send(charArray)
+    marioModel.find().then(ele => {
+        res.send(ele)
+        return
+    })
+    
 })
 
 app.get('http://localhost:3000/mario/:id',(req,res)=>{
     const marioId = parseInt(req.params.id);
-    const marioDet = marioModel.find(mar => mar.id===marioId)
-    if (marioDet){
-        res.send(JSON.parse(JSON.stringify(marioDet)))
-    }else{
-        res.status(400).send({message: error.message})
-    }
-    
-})
+    marioModel.find({ _id: marioId })
+    .then((mariochars) =>
+      mariochars.map((mariochars) => res.send(mariochars))
+    )
+    .catch((error) => res.status(400).send({ message: error.message }));
+  return;
+});
 
 
 
