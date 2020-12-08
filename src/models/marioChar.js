@@ -1,5 +1,5 @@
-const mongoose,{Schema} = require('mongoose');
-
+const mongoose = require('mongoose');
+const {Schema} = mongoose
 //  Your code goes here
 const marioSchema = new Schema({
     name: {
