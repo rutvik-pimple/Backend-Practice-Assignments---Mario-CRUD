@@ -22,6 +22,10 @@ app.get('/mario',(req,res)=>{
 
 app.get('/mario/:id',(req,res)=>{
     const marioId = req.params.id;
+    if(!marioId){
+        res.status(400).send({ message: error.message })
+        return
+    }
     marioModel.find({ _id: marioId })
     .then((mariochars) =>
       mariochars.map((mariochars) => res.send(mariochars))
@@ -48,6 +52,10 @@ app.post('/mario',(req,res)=>{
 
 app.patch('/mario/:id',(req,res)=>{
     const marioId = req.params.id;
+    if(!marioId){
+        res.status(400).send({ message: error.message })
+        return
+    }
     const mario= {
         ...req.body,
         weight: parseInt(req.body.weight)
@@ -63,6 +71,10 @@ app.patch('/mario/:id',(req,res)=>{
 
 app.delete('/mario/:id',(req,res)=>{
     const marioId = req.params.id;
+    if(!marioId){
+        res.status(400).send({ message: error.message })
+        return
+    }
     marioModel.findByIdAndDelete(marioId, function(result) {
         if(!result) {
             res.status(400).send({message: error.message});
