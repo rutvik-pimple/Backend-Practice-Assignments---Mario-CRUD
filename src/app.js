@@ -21,7 +21,7 @@ app.get('/mario',(req,res)=>{
 })
 
 app.get('/mario/:id',(req,res)=>{
-    const marioId = parseInt(req.params.id);
+    const marioId = req.params.id;
     marioModel.find({ _id: marioId })
     .then((mariochars) =>
       mariochars.map((mariochars) => res.send(mariochars))
