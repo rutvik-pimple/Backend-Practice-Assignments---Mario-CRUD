@@ -30,6 +30,22 @@ app.get('/mario/:id',(req,res)=>{
   return;
 });
 
+app.post('/mario',(req,res)=>{
+    const mario= new marioModel({
+        ...req.body,
+        weight: parseInt(req.body.weight)
+    })
+
+    if(!mario.name || !mario.weight){
+        
+        //res.setHeader('{"content-type":"application/x-www-form-urlencoded"}');
+        res.status(400).send({message: 'either name or weight is missing'});
+        return;
+    }
+    marioModel.save().then((mario)=>res.send(201,mario))
+    
+})
+
 
 
 module.exports = app;
