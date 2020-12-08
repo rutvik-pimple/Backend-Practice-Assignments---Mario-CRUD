@@ -22,6 +22,9 @@ app.get('/mario',(req,res)=>{
 
 app.get('/mario/:id',(req,res)=>{
     const marioId = req.params.id;
+    if (!marioId){
+        res.status(400).send({ message: error.message })
+    }
     marioModel.find({ _id: marioId })
     .then((mariochars) =>
       mariochars.map((mariochars) => res.send(mariochars))
