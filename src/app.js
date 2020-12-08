@@ -31,7 +31,7 @@ app.get('/mario/:id',(req,res)=>{
       mariochars.map((mariochars) => res.send(mariochars))
     )
     .catch((error) => res.status(400).send({ message: error.message }));
-  return;
+  
 });
 
 app.post('/mario',(req,res)=>{
