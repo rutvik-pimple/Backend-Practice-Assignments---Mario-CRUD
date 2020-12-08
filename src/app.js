@@ -12,16 +12,16 @@ app.use(bodyParser.urlencoded({ extended: false }))
 app.use(bodyParser.json())
 
 // your code goes here
-app.get('/mario',(req,res)=>{
+app.get('http://localhost:3000/mario',(req,res)=>{
     const charArray = marioModel.find()
     res.send(charArray)
 })
 
-app.get('/mario/:id',(req,res)=>{
-    const stId = parseInt(req.params.id);
-    const stDetails = marioModel.find(stu => stu.id===stId)
-    if (stDetails){
-        res.send(JSON.parse(JSON.stringify(stDetails)))
+app.get('http://localhost:3000/mario/:id',(req,res)=>{
+    const marioId = parseInt(req.params.id);
+    const marioDet = marioModel.find(mar => mar.id===marioId)
+    if (marioDet){
+        res.send(JSON.parse(JSON.stringify(marioDet)))
     }else{
         res.status(400).send({message: error.message})
     }
