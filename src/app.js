@@ -30,7 +30,7 @@ app.get('/mario/:id',(req,res)=>{
     marioModel.findById(id)
     .then((result) => {
         if(!result){
-            res.status(400).json({"message": error.message});
+            res.status(400).json({"message": result.message});
         }
         res.json(result);
        
@@ -38,7 +38,6 @@ app.get('/mario/:id',(req,res)=>{
     .catch((error)=>{
         res.status(400).json({"message": error.message});
     })
-
 })
 
 
@@ -65,7 +64,7 @@ app.patch('/mario/:id',(req,res)=>{
     
     .then((result)=>{
         if(!result){
-            res.status(400).json({"message": error.message});
+            res.status(400).json({"message": result.message});
             return;
         }
         res.status(200).json(result);
@@ -81,7 +80,7 @@ app.delete('/mario/:id',(req,res) =>{
     marioModel.findByIdAndDelete(id)
     .then((result)=>{
         if(!result){
-            res.status(400).json({"message": error.message});
+            res.status(400).json({"message": result.message});
             return;
         }
         res.status(200).json({"message": "character deleted"});
