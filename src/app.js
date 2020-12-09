@@ -64,10 +64,10 @@ app.patch('/mario/:id',(req,res)=>{
     marioModel.findByIdAndUpdate(id,updates,{new:true})
     
     .then((result)=>{
-        if(result == null){
-            res.status(400).json({"message": result});
-            return;
-        }
+        // if(result == null){
+        //     res.status(400).json({"message": result});
+        //     return;
+        // }
         res.status(200).json(result);
     })
     .catch((error)=>{
@@ -80,10 +80,10 @@ app.delete('/mario/:id',(req,res) =>{
     const id = req.params.id;
     marioModel.findByIdAndDelete(id)
     .then((result)=>{
-        if(result == null){
-            res.status(400).json({"message": result});
-            return;
-        }
+        // if(result == null){
+        //     res.status(400).json({"message": result});
+        //     return;
+        // }
         res.status(200).json({"message": "character deleted"});
     })
     .catch((error)=>{
