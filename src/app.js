@@ -62,7 +62,7 @@ app.patch('/mario/:id',(req,res)=>{
 
 app.delete('/mario/:id',(req,res)=>{
     const marioId = req.params.id;
-    marioModel.findByIdAndDelete(marioId, function(result) {
+    marioModel.findOneAndDelete({_id:marioId}, function(result) {
         if(!result) {
             res.status(400).send({message: error.message});
             return;
